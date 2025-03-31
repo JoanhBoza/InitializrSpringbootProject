@@ -1,4 +1,4 @@
-package com.tienda.service.Impl;
+package com.tienda.service.impl;
 
 import com.tienda.dao.CategoriaDao;
 import com.tienda.domain.Categoria;
@@ -11,16 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
 
-    @Autowired
+     @Autowired
     private CategoriaDao categoriaDao;
 
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Categoria> getCategorias(boolean activos) {
-        var lista=categoriaDao.findAll();
+        var lista = categoriaDao.findAll();
         if (activos) {
-           lista.removeIf(e -> !e.isActivo());
+            lista.removeIf(e -> !e.isActivo());
         }
         return lista;
     }
-}
